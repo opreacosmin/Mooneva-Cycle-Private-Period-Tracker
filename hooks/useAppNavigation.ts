@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { App as CapApp } from '@capacitor/app';
 
 export type ViewType = 'calendar' | 'trends' | 'settings' | 'notifications' | 'lab';
-export type SubViewType = 'main' | 'predictions' | 'data_management';
+export type SubViewType = 'main' | 'predictions' | 'data_management' | 'send_to_bf';
 
 /**
  * Full-screen overlays that must swallow the hardware back before navigation sees it.

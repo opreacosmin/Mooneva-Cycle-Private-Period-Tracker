@@ -3,6 +3,7 @@ import React from 'react';
 import { ScreenWrapper } from '../ScreenWrapper';
 import Settings from '../Settings';
 import BottomNav from '../BottomNav';
+import { SendToBF } from '../partner/SendToBF';
 import { useMooneva } from '../../contexts/MoonevaContext';
 import { SubViewType, ViewType } from '../../hooks/useAppNavigation';
 
@@ -28,17 +29,21 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
     return (
         <ScreenWrapper>
             <div className="flex-1 flex flex-col overflow-hidden bg-[#fcfaf6]">
-                <Settings
-                    settings={settings}
-                    onUpdate={updateSettings}
-                    subView={subView}
-                    onSubViewChange={(sub) => (sub === 'main' ? closeSubView() : setSubView(sub))}
-                    periods={periods}
-                    onUpdatePeriodWithdrawalBleed={updatePeriodWithdrawalBleed}
-                    onViewChange={setView}
-                    runBackupNow={actions.runBackupNow}
-                    pregnancyAwaitingPeriod={model.pregnancySpans.some(sp => sp.awaitingPeriod)}
-                />
+                {subView === 'send_to_bf' ? (
+                    <SendToBF onBack={closeSubView} />
+                ) : (
+                    <Settings
+                        settings={settings}
+                        onUpdate={updateSettings}
+                        subView={subView}
+                        onSubViewChange={(sub) => (sub === 'main' ? closeSubView() : setSubView(sub))}
+                        periods={periods}
+                        onUpdatePeriodWithdrawalBleed={updatePeriodWithdrawalBleed}
+                        onViewChange={setView}
+                        runBackupNow={actions.runBackupNow}
+                        pregnancyAwaitingPeriod={model.pregnancySpans.some(sp => sp.awaitingPeriod)}
+                    />
+                )}
             </div>
 
             <BottomNav

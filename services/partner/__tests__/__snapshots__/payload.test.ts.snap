@@ -1,0 +1,26 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildPartnerPayload > matches the golden snapshot for a fixture cycle 1`] = `
+{
+  "dayOfCycle": 28,
+  "fertileWindowEstimate": [
+    1779840000000,
+    1780444800000,
+  ],
+  "generatedAt": "fixed-for-snapshot",
+  "inEstimatedFertileWindow": false,
+  "mood": "calm",
+  "nextPeriodEta": 1781654400000,
+  "note": "Thinking of you",
+  "phase": "luteal",
+  "pmsWindow": [
+    1781308800000,
+    1781481600000,
+  ],
+  "symptoms": [
+    "Bloating",
+    "Cramps",
+  ],
+  "v": 1,
+}
+`;

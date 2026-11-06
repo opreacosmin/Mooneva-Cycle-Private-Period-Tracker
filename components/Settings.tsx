@@ -566,6 +566,18 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
             </SettingCard>
           </section>
 
+          <section>
+            <SettingCard title="Partner">
+              <SettingRow
+                label="Send to BF"
+                desc="Send an encrypted cycle update"
+                icon={<Icons.Share />}
+                onClick={() => onSubViewChange('send_to_bf')}
+                last
+              />
+            </SettingCard>
+          </section>
+
           {/* 1.5 Reminders */}
           <section>
             <SettingCard title={t('common.notifications')}>

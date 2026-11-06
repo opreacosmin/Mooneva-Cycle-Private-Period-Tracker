@@ -12,7 +12,7 @@ export default defineConfig({
             },
         },
         setupFiles: ['./tests/setup.ts'],
-        include: ['tests/**/*.test.{ts,tsx}'],
+        include: ['tests/**/*.test.{ts,tsx}', 'services/**/__tests__/**/*.test.{ts,tsx}'],
     },
     resolve: {
         alias: {
