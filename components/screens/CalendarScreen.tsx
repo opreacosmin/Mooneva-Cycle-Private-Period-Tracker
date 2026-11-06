@@ -154,42 +154,8 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
     const prevMonth = () => setCurrentDate(curr => new Date(curr.getFullYear(), curr.getMonth() - 1, 1));
 
 
-    /**
-     * Header shortcut. Set up means "back up now"; not set up means "go and set it up",
-     * which is the only way that tap can do anything useful.
-     */
-    const [backupState, setBackupState] = useState<'idle' | 'running' | 'done' | 'failed'>('idle');
-    const [backupToast, setBackupToast] = useState<string | null>(null);
-    const autoBackupReady = !!settings.autoBackupEnabled && !!settings.autoBackupTarget;
-
-    const handleHeaderBackup = async () => {
-        if (!autoBackupReady) {
-            openSubViewFrom('calendar', 'data_management');
-            return;
-        }
-        setBackupState('running');
-        try {
-            const status = await actions.runBackupNow();
-            if (status === 'written') {
-                setBackupState('done');
-                // Name the folder: the file lands somewhere the user cannot see from here,
-                // and "done" with no destination is not evidence that anything was saved.
-                setBackupToast(t('settings.auto_backup_saved_to', {
-                    folder: settings.autoBackupTargetLabel || t('settings.auto_backup_destination'),
-                }));
-            } else if (status === 'failed') {
-                setBackupState('failed');
-                setBackupToast(t('errors.backup_error'));
-            } else {
-                // Only reachable when a run is already in flight; nothing to report.
-                setBackupState('idle');
-            }
-        } catch {
-            setBackupState('failed');
-            setBackupToast(t('errors.backup_error'));
-        }
-        // Back to neutral so the icon does not sit there claiming a result from an hour ago.
-        setTimeout(() => { setBackupState('idle'); setBackupToast(null); }, 3500);
+    const handleHeaderRemindBF = () => {
+        openSubViewFrom('calendar', 'send_to_bf');
     };
 
     // --- Timeline Data ---
@@ -203,27 +169,8 @@ export const CalendarScreen: React.FC<CalendarScreenProps> = ({
                 cycleStatus={cycleStatus}
                 taskCount={dummyTasks.filter(t => !t.completed).length}
                 onNotificationsClick={() => setView('notifications')}
-                onBackupClick={isCloaked ? undefined : handleHeaderBackup}
-                backupState={backupState}
+                onRemindBFClick={isCloaked ? undefined : handleHeaderRemindBF}
             />
-
-            {backupToast && (
-                <div className="flex justify-center px-4 pb-1 animate-fade-in">
-                    <span
-                        data-testid="header-backup-toast"
-                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-wider max-w-full truncate ${
-                            backupState === 'failed'
-                                ? 'bg-red-500/15 text-red-600'
-                                : 'bg-[#8aacac]/20 text-[#5a7d87]'
-                        }`}
-                    >
-                        <svg className="w-3 h-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {backupToast}
-                    </span>
-                </div>
-            )}
 
             <main
                 className="flex-1 overflow-y-auto overflow-x-hidden px-[max(16px,calc((100%_-_32rem)/2))] pt-[20px] pb-32 relative z-10 no-scrollbar"

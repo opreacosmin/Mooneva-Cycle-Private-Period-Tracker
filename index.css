@@ -181,6 +181,47 @@ body[data-theme="dark-neumorphism"] {
   color: var(--text-primary);
 }
 
+body[data-theme="dark-neumorphism"].vampire-theme {
+  --app-bg: #1b0f16;
+  --surface: #1b0f16;
+  --surface-alt: #26131d;
+  --surface-raised: #1b0f16;
+  --text-primary: #f6e7ec;
+  --text-secondary: #d8bcc7;
+  --text-muted: #b48e9c;
+  --border-soft: rgba(216, 188, 199, 0.2);
+  --accent-soft: #d14b76;
+  --cycle-period: #ff6a95;
+  --cycle-ovulation: #ff9a5f;
+  --cycle-follicular: #d27aff;
+  --cycle-luteal: #ffb16b;
+  --cycle-spotting: #ff4e80;
+  --shadow-raised: 8px 8px 16px rgba(8, 3, 6, 0.72), -8px -8px 16px rgba(67, 34, 52, 0.42);
+  --shadow-raised-sm: 4px 4px 8px rgba(8, 3, 6, 0.68), -4px -4px 8px rgba(67, 34, 52, 0.4);
+  --shadow-raised-xs: 2px 2px 4px rgba(8, 3, 6, 0.62), -2px -2px 4px rgba(67, 34, 52, 0.36);
+  --shadow-inset: inset 4px 4px 8px rgba(8, 3, 6, 0.72), inset -4px -4px 8px rgba(67, 34, 52, 0.34);
+  --shadow-inset-xs: inset 1.5px 1.5px 3px rgba(8, 3, 6, 0.66), inset -1.5px -1.5px 3px rgba(67, 34, 52, 0.32);
+}
+
+body[data-theme="dark-neumorphism"].vampire-theme::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    url('/vamp-cat.png'),
+    url('/bat-cat-bottle.png'),
+    url('/cat-sipping%20on%20blood.png'),
+    url('/cats-drinking-blood.png');
+    
+  background-repeat: no-repeat;
+  background-size: 170px auto, 200px auto, 240px auto, 180px auto;
+  background-position: 4% 102%, 98% 100%, -38% -10%, 98% 0%, 50% 100%;
+  background-blend-mode: darken;
+}
+
 body[data-theme="dark-neumorphism"],
 body[data-theme="dark-neumorphism"] #root {
   background-color: var(--app-bg) !important;

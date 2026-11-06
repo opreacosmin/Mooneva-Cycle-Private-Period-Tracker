@@ -109,6 +109,7 @@ export interface AppSettings {
   // Neutral reminder texts and the private channel, without hiding the app. Absent = off.
   discreetNotifications?: boolean;
   darkNeumorphism?: boolean;
+  vampireTheme?: boolean;
 
   userName: string;
   pin?: string; // Legacy plaintext PIN (migrated to pinHash/pinSalt on startup)

@@ -229,6 +229,7 @@ export const saveData = async (data: Record<string, DailyLog>) => {
 export const DEFAULT_SETTINGS: AppSettings = {
     discreteMode: false,
     darkNeumorphism: false,
+    vampireTheme: true,
     userName: 'User',
     onboardingCompleted: false,
     symptoms: INITIAL_SYMPTOMS,

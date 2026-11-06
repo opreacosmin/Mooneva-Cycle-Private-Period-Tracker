@@ -480,7 +480,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
 
         <div className="px-4 space-y-6 max-w-lg mx-auto">
           {/* 0. About & Support (Consolidated & Neumorphic) */}
-          <section>
+          {/* <section>
             <div
               className="rounded-2xl p-4 bg-[#F0F2F5] space-y-4"
               style={{ boxShadow: 'inset 4px 4px 8px rgba(163, 177, 198, 0.3), inset -4px -4px 8px rgba(255, 255, 255, 0.7)' }}
@@ -551,7 +551,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
                 </div>
               )}
             </div>
-          </section>
+          </section> */}
 
           {/* 1. Prediction Settings (grouped) */}
           <section>
@@ -704,9 +704,17 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
                 label={t('settings.dark_neumorphism')}
                 desc={t('settings.dark_neumorphism_desc')}
                 icon={<Icons.Moon />}
-                last
+                mergeWithNext
               >
                 <Toggle label={t('settings.dark_neumorphism')} active={!!settings.darkNeumorphism} onClick={() => onUpdate({ ...settings, darkNeumorphism: !settings.darkNeumorphism })} />
+              </SettingRow>
+              <SettingRow
+                label="Vampire theme"
+                desc="Dark crimson style + vampire logo"
+                icon={<Icons.Moon />}
+                last
+              >
+                <Toggle label="Vampire theme" active={!!settings.vampireTheme} onClick={() => onUpdate({ ...settings, vampireTheme: !settings.vampireTheme, darkNeumorphism: settings.vampireTheme ? settings.darkNeumorphism : true })} />
               </SettingRow>
             </SettingCard>
           </section>
@@ -871,7 +879,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
           </section>
 
           {/* 6. Feedback */}
-          <section>
+          {/* <section>
             <div className="bg-gradient-to-br from-[#7598a0] to-[#5b7a82] rounded-2xl p-6 text-white shadow-lg shadow-[#7598a0]/20 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 blur-2xl rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-125 transition-transform duration-700 pointer-events-none" />
 
@@ -895,10 +903,10 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
                 </a>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* 7. Star the repo */}
-          <section>
+          {/* <section>
             <div
               className="bg-[#F0F2F5] rounded-2xl p-5 text-center"
               style={{ boxShadow: '6px 6px 12px rgba(163, 177, 198, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.8)' }}
@@ -932,7 +940,7 @@ const Settings: React.FC<SettingsProps> = ({ settings, onUpdate, subView, onSubV
                 {t('settings.star_repo_button', 'Open GitHub')}
               </button>
             </div>
-          </section>
+          </section> */}
 
           {/* 8. Footer */}
           <div className="text-center pt-8 pb-12 space-y-4">

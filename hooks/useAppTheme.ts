@@ -5,9 +5,10 @@ interface UseAppThemeOptions {
     view: string;
     discreteMode: boolean;
     darkNeumorphism?: boolean;
+    vampireTheme?: boolean;
 }
 
-export const useAppTheme = ({ view, discreteMode, darkNeumorphism = false }: UseAppThemeOptions) => {
+export const useAppTheme = ({ view, discreteMode, darkNeumorphism = false, vampireTheme = false }: UseAppThemeOptions) => {
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -26,8 +27,9 @@ export const useAppTheme = ({ view, discreteMode, darkNeumorphism = false }: Use
             if (favicon) favicon.href = iconUrl;
             if (appleIcon) appleIcon.href = iconUrl;
         } else {
-            if (darkNeumorphism) {
+            if (darkNeumorphism || vampireTheme) {
                 body.dataset.theme = 'dark-neumorphism';
+                if (vampireTheme) body.classList.add('vampire-theme');
                 body.classList.add('bg-[var(--app-bg)]', 'text-[var(--text-primary)]');
             } else if (view === 'calendar') {
                 body.classList.add('bg-[#f5f4f2]');
@@ -37,7 +39,7 @@ export const useAppTheme = ({ view, discreteMode, darkNeumorphism = false }: Use
                 body.classList.add('bg-white');
             }
 
-            if (!darkNeumorphism) {
+            if (!darkNeumorphism && !vampireTheme) {
                 body.classList.add('text-gray-900');
             }
             body.classList.add('antialiased');
@@ -51,9 +53,11 @@ export const useAppTheme = ({ view, discreteMode, darkNeumorphism = false }: Use
             };
             document.title = titles[view] || 'Mooneva';
 
-            const iconUrl = 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>';
+            const iconUrl = vampireTheme
+                ? 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦇</text></svg>'
+                : 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>';
             if (favicon) favicon.href = iconUrl;
             if (appleIcon) appleIcon.href = iconUrl;
         }
-    }, [view, discreteMode, darkNeumorphism, t]);
+    }, [view, discreteMode, darkNeumorphism, vampireTheme, t]);
 };
